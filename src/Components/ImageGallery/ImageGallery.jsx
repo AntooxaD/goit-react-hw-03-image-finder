@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import {toast} from 'react-toastify';
 import {Gallery, Loader} from '../Style/styled';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
-import Button from '../Button/Button'
-import Modal from '../Modal/Modal'
+import Button from '../Button/Button';
+import Modal from '../Modal/Modal';
 
 
 export default class ImageGallery extends Component {
@@ -64,8 +64,6 @@ export default class ImageGallery extends Component {
         if (status === 'pending') {
             return (
                 <Loader
-                    type="BallTriangle"
-                    color="#00BFFF" height={80} width={80}
                 />
             )
         }

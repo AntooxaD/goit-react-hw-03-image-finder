@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import {Component} from 'react'
 import PropTypes from 'prop-types';
-import { Overlay, Modalbox, Loader } from '../Style/styled';
+import { Overlay, Modalbox } from '../Style/styled';
  
 
 const modalRoot = document.getElementById("modal-root");
@@ -22,15 +22,14 @@ export default class Modal extends Component {
 
     handleOverlayClick = e => {
         if (e.currentTarget === e.target) {
-            this.props.onClose();
+            this.props.onClose();          
         }
     }
 
     render() {
         const {children} = this.props
         return createPortal(
-            <Overlay onClick={this.handleOverlayClick}>
-                <Loader/>
+            <Overlay onClick={this.handleOverlayClick}>             
                 <Modalbox>{children}</Modalbox>
             </Overlay>,
             modalRoot,
