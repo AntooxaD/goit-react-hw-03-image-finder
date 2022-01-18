@@ -9,14 +9,16 @@ export default class App extends Component {
 state = {
   searchQuery: ``
 }
-handleSubmit = search => {
-  this.setState({ search });
+handleSubmit = searchQuery => {
+  this.setState({ searchQuery });
+  
 };
   render() {return <div className="App">
     <Searchbar onSubmit={this.handleSubmit} />
+    <ImageGallery searchQuery={this.state.searchQuery} />
     <ToastContainer
                     position="top-right"
-                    autoClose={5000}
+                    autoClose={3000}
                     hideProgressBar={false}
                     newestOnTop={false}
                     closeOnClick
@@ -25,7 +27,6 @@ handleSubmit = search => {
                     draggable
                     pauseOnHover
                 />
-    <ImageGallery searchQuery={this.state.searchQuery} />
   </div>;
   
 }}

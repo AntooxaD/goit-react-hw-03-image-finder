@@ -1,5 +1,5 @@
 import { Component } from "react";
-import imgApi from '../Api/Api';
+import api from '../Api/Api';
 import PropTypes from 'prop-types';
 import {toast} from 'react-toastify';
 import {Gallery, Loader} from '../Style/styled';
@@ -10,7 +10,7 @@ import Modal from '../Modal/Modal'
 
 export default class ImageGallery extends Component {
     state = {
-        images: null,
+        images: {},
         loading: false,
         error: null,
         openModal: false,
@@ -19,11 +19,13 @@ export default class ImageGallery extends Component {
         status: 'idle',
     }
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.searchQuery !== this.props.searchQuery) {
+        const prevSearch = prevProps.searchQuery;
+        const nextSearch = this.props.searchQuery
+        if (prevSearch !== nextSearch) {
             this.setState({ page: 1, status: 'pending' });
 
-            imgApi
-                .fetchImages(this.props.searchQuery, this.state.page)
+            api
+                .fetchImages(nextSearch, this.state.page)
                 .then(images => {
                     if (!images.hits.length) {
                         this.setState({ status: 'idle'});
@@ -39,12 +41,13 @@ export default class ImageGallery extends Component {
             openModal: !openModal
         }));
         this.setState({ selectedImage: link });
+        
     }
-
+   
     handleLoadMoreBnt = () => {
         this.setState({ page: this.state.page + 1 });
 
-        imgApi
+        api
             .fetchImages(this.props.searchQuery, this.state.page)
             .then(images => {
                 this.setState(prevState => ({
@@ -57,13 +60,12 @@ export default class ImageGallery extends Component {
         if (status === 'idle') {
             return <div></div>;
         }
+       
         if (status === 'pending') {
             return (
                 <Loader
                     type="BallTriangle"
-                    color="#000"
-                    height={50}
-                    width={50}
+                    color="#00BFFF" height={80} width={80}
                 />
             )
         }
@@ -78,11 +80,12 @@ export default class ImageGallery extends Component {
                     </Gallery>
                     {openModal &&
                         <Modal onClose={this.handleImageClick}>
-                            <img src={selectedImage} alt="" onClick={this.handleImageClick}/>
+                            <img src={selectedImage} alt={images.tags} onClick={this.handleImageClick}/>
                         </Modal>
                     }
                     {images.length > 11 && <Button onClick={this.handleLoadMoreBnt}/>}
                 </div>
+                
             );
         }
     

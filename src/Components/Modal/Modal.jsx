@@ -14,23 +14,24 @@ export default class Modal extends Component {
         window.removeEventListener('keydown', this.handleKeyDown);
     }
 
-    handleKeyDown = event => {
-        if (event.code === 'Escape') {
+    handleKeyDown = e => {
+        if (e.code === 'Escape') {
             this.props.onClose();
         }
     }
 
-    handleOverlayClick = event => {
-        if (event.currentTarget === event.target) {
+    handleOverlayClick = e => {
+        if (e.currentTarget === e.target) {
             this.props.onClose();
         }
     }
 
     render() {
+        const {children} = this.props
         return createPortal(
             <Overlay onClick={this.handleOverlayClick}>
                 <Loader/>
-                <Modalbox>{this.props.children}</Modalbox>
+                <Modalbox>{children}</Modalbox>
             </Overlay>,
             modalRoot,
         );
