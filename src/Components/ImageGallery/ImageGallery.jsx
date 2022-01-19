@@ -23,7 +23,7 @@ export default class ImageGallery extends Component {
         const nextSearch = this.props.searchQuery
         if (prevSearch !== nextSearch) {
             this.setState({ page: 1, status: 'pending' });
-
+          
             api
                 .fetchImages(nextSearch, this.state.page)
                 .then(images => {
@@ -53,8 +53,13 @@ export default class ImageGallery extends Component {
                 this.setState(prevState => ({
                     images: [...prevState.images, ...images.hits],
                 }));
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: "smooth",
+                  });
             })
     }
+    
     render() {
         const { images, error, status, openModal, selectedImage } = this.state;
         if (status === 'idle') {
@@ -63,8 +68,8 @@ export default class ImageGallery extends Component {
        
         if (status === 'pending') {
             return (
-                <Loader
-                />
+               <Loader
+               />
             )
         }
         if (status === 'rejected') {
@@ -72,7 +77,7 @@ export default class ImageGallery extends Component {
         }
         if (status === 'resolved') {
             return (
-                <div>
+                <div>                 
                     <Gallery>
                         <ImageGalleryItem images={images} onClick={this.handleImageClick}/>
                     </Gallery>
