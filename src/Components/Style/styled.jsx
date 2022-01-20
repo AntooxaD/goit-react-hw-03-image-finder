@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {BallTriangle} from 'react-loader-spinner';
 
-const Loader = styled(BallTriangle)`
+const Spinner = styled(BallTriangle)`
 display: flex;
 justify-content: center;
 `;
@@ -132,4 +132,4 @@ const SearchBar = styled.header`
   max-height: calc(100vh - 24px);`;
 
 
-export {Loader, SearchBar, SearchForm, SearchFormButton, SearchFormInput, Overlay, Modalbox, Btn, Gallery, GalleryItem, GalleryItemImage}
+export {Spinner, SearchBar, SearchForm, SearchFormButton, SearchFormInput, Overlay, Modalbox, Btn, Gallery, GalleryItem, GalleryItemImage}

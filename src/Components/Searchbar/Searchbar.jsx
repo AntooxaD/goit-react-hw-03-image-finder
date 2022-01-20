@@ -9,14 +9,14 @@ class Searchbar extends Component {
         searchQuery: ''
     };
     handleInputChange = e => {
-        const searchQuery =e.currentTarget.value.toLowerCase();
+        const searchQuery =e.target.value.toLowerCase();
         this.setState({searchQuery: searchQuery})
     }
     handleSubmit = e => {
         e.preventDefault();
         const {searchQuery} = this.state
         if( searchQuery.trim() === '') {
-            return toast.error('error')
+            return toast.error('enter a word')
              
         }
         this.props.onSubmit(searchQuery);

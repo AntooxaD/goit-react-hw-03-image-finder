@@ -1,8 +1,8 @@
-   
-function fetchImages(query, page) {
+import PropTypes from "prop-types";  
+function fetchImages(searchQuery, page) {
     const KEY = '24234389-dbdb592ca842ff709e1e6a06c'
     
-    return fetch(`https://pixabay.com/api/?key=${KEY}&q=${query}&image_type=photo&orientation=horizonta&per_page=12&page=${page}`).then(response => {
+    return fetch(`https://pixabay.com/api/?key=${KEY}&q=${searchQuery}&image_type=photo&orientation=horizonta&per_page=12&page=${page}`).then(response => {
         if (response.ok) {
             return response.json();
         }
@@ -13,5 +13,8 @@ function fetchImages(query, page) {
 const api = {
     fetchImages
 }
-
+fetchImages.propTypes = {
+    query: PropTypes.string.isRequired,
+    page: PropTypes.number.isRequired,
+  };
 export default api;
