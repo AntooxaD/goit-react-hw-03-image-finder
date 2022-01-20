@@ -2,12 +2,12 @@ import { GalleryItem, GalleryItemImage } from '../Style/styled';
 import PropTypes from 'prop-types';
 
 
-function ImageGalleryItem ({ src, largeImage, openModal, tags }) {
+function ImageGalleryItem ({ webImage, largeImage, openModal, tags }) {
     return (          
                 <GalleryItem >
                     <GalleryItemImage  onClick={() => openModal(largeImage)}
-                    src={src}   
-                    dataLargeUmg={largeImage}                
+                    src={webImage}   
+                    dataLargeImg={largeImage}                
                     alt={tags}/>
                 </GalleryItem>
             

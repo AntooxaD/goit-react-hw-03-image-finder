@@ -48,7 +48,9 @@ fetchImg = ()  => {
         }));
       })
       .catch((error) => this.setState({ error: "Побробуйте снова" }))
-      .finally(() => this.setState({ loading: false }));
+      .finally(() => {this.setState({ loading: false })
+      console.log(this.state.images)});
+
 
 }
 handleImageClick = e => {
