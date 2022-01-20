@@ -6,13 +6,13 @@ import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 
 function ImageGallery  ({ images, openModal  })  {
     
-    return (<Gallery>
+    return (<Gallery  onClick = {openModal } >
         {images.map(({ id, tags, webformatURL, largeImageURL })  => (<ImageGalleryItem 
             key={id}
             webImage={webformatURL}
             tags={tags}
             largeImage = {largeImageURL}
-            onClick = {openModal } />
+           />
             ))} 
             </Gallery>                
             );

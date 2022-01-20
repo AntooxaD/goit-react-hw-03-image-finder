@@ -54,10 +54,11 @@ fetchImg = ()  => {
 
 }
 handleImageClick = e => {
+  if(!e.target.matches('img')) return
   e.preventDefault();
     this.setState({
       openModal: true,
-      selectedImage: e.target.dataset.largeimg,
+      selectedImage: e.target.dataset.source,
     });  
 }
 
@@ -90,13 +91,13 @@ handleSubmit = searchQuery => {
    return <div className="App">
       <Searchbar onSubmit={this.handleSubmit} />
       {loading && <Spinner />}
-      {images.lengs > 0 && !error && (
+      {images.length > 0 && !error && (
       <>
       <ImageGallery openModal={this.handleImageClick} images={images}/>
       <Button onClick={this.handleLoadMoreBnt}/>
       </>
       )}    
-      {openModal && ( <Modal onClose={this.handleImageClick} src={selectedImage} >
+      {openModal && ( <Modal onClose={this.closeModal} src={selectedImage} >
 
                       </Modal>
     )}

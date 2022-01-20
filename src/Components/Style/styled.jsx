@@ -89,7 +89,7 @@ const SearchBar = styled.header`
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
     :hover {
     transform: scale(1.03);
-    cursor: zoom-in;
+    cursor: zoom-in;}
   `;
   const Btn = styled.button `
     padding: 8px 16px;
@@ -113,7 +113,7 @@ const SearchBar = styled.header`
       0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
    :hover,
    :focus {
-    background-color: #303f9f;
+    background-color: #303f9f;}
   `;
   const Overlay = styled.div `
   position: fixed;

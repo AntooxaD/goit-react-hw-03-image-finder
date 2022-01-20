@@ -1,25 +1,37 @@
 import { GalleryItem, GalleryItemImage } from '../Style/styled';
 import PropTypes from 'prop-types';
+import {Component} from 'react';
+import LoaderSpin from '../Loader/Loader';
 
-
-function ImageGalleryItem ({ webImage, largeImage, openModal, tags }) {
-    return (          
-                <GalleryItem >
-                    <GalleryItemImage  onClick={() => openModal(largeImage)}
-                    src={webImage}   
-                    dataLargeImg={largeImage}                
-                    alt={tags}/>
-                </GalleryItem>
-            
-     
-    )
+class ImageGalleryItem extends Component {
+    state = { loading: true };
+    onLoadHandle = () => {
+        this.setState({ loading: false });
+    };
+    render() {
+        const { webImage, largeImage, tags } = this.props;
+        const { loading } = this.state;
+        return (
+            <GalleryItem>
+                {loading && <LoaderSpin radius={60} />}
+                <GalleryItemImage
+                    src={webImage}
+                    data-source={largeImage}
+                    alt={tags}
+                    style={{
+                        opacity: loading ? '0' : '1',
+                    }}
+                    onLoad={this.onLoadHandle}
+                />
+            </GalleryItem>
+        );
+    }
 }
 
 ImageGalleryItem.propTypes = {
         
-        webformatURL: PropTypes.string.isRequired,
-        largeImageURL: PropTypes.string.isRequired,
+        webImage: PropTypes.string.isRequired,
+        largeImage: PropTypes.string.isRequired,
         tags: PropTypes.string,
-        onClick: PropTypes.func,  
 }
 export default ImageGalleryItem

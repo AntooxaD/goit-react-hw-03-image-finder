@@ -1,14 +1,13 @@
 import { createPortal } from 'react-dom';
 import {Component} from 'react'
 import PropTypes from 'prop-types';
-import Loader from "react-loader-spinner";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import LoaderSpin from '../Loader/Loader';
 import { Overlay, Modalbox } from '../Style/styled';
 
 const modalRoot = document.getElementById("modal-root");
 export default class Modal extends Component {
    state = {
-       loading: false,
+       loading: true,
    }
    toggleLoadind() {
     this.setState((prevState) => {
@@ -43,10 +42,13 @@ export default class Modal extends Component {
         
             <Overlay onClick={this.handleOverlayClick}>   
 
-                <Modalbox onLoad={this.handleImageLoaded}> 
-                <img src={src} alt={alt}></img>
+                <Modalbox > 
+                <img src={src} alt={alt} onLoad={this.handleImageLoaded}
+                style={{
+                    display: this.state.loading ? 'none' : 'block',
+                }}></img>
                 </Modalbox>
-                {this.state.loading && (<Loader type="BallTriangle" color="#3f51b5" height={350} />)}
+                {this.state.loading && (<LoaderSpin radius={350} />)}
             </Overlay>,
             modalRoot,
         );
