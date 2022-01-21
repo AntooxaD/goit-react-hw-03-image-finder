@@ -1,5 +1,5 @@
 import "./App.css";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Component } from "react";
 import Searchbar from "./сomponents/Searchbar/Searchbar";
@@ -36,9 +36,10 @@ export default class App extends Component {
       .fetchImages(searchQuery, page)
       .then(({ hits }) => {
         if (hits.length === 0) {
-          return this.setState({
-            error: `Не удалось найти картинку по запросу ${searchQuery}`,
-          });
+          this.setState({ hits: null });
+          return toast.error(
+            `Не удалось найти картинку по запросу ${searchQuery}`
+          );
         }
         this.setState(({ images, page }) => ({
           images: [...images, ...hits],
