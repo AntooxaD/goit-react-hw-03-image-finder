@@ -46,7 +46,7 @@ export default class App extends Component {
           page: page,
         }));
       })
-      .catch((error) => this.setState({ error: "Побробуйте снова" }))
+      .catch(() => this.setState({ error: "Побробуйте снова" }))
       .finally(() => {
         this.setState({ loading: false });
         console.log(this.state.images);
