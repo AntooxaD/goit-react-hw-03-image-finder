@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import { BallTriangle } from "react-loader-spinner";
 
-const Spinner = styled(BallTriangle)`
-  display: flex;
-  justify-content: center;
-`;
 const SearchBar = styled.header`
   top: 0;
   left: 0;
@@ -77,6 +73,7 @@ const Gallery = styled.ul`
   margin-right: auto;
 `;
 const GalleryItem = styled.li`
+  display: relative;
   border-radius: 2px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
@@ -91,9 +88,16 @@ const GalleryItemImage = styled.img`
     cursor: zoom-in;
   }
 `;
+const Spinner = styled(BallTriangle)`
+  position: absolute;
+  left: 50;
+  top: 50;
+`;
 const Btn = styled.button`
   padding: 8px 16px;
   border-radius: 2px;
+  width: 60px;
+  margin: 0 auto;
   background-color: #3f51b5;
   margin-top: 10px;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);

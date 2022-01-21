@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-function fetchImages(searchQuery, page) {
+async function fetchImages(searchQuery, page) {
   const KEY = "24234389-dbdb592ca842ff709e1e6a06c";
 
   return fetch(

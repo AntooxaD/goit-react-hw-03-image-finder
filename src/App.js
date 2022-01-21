@@ -2,13 +2,13 @@ import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Component } from "react";
-import Searchbar from "./Components/Searchbar/Searchbar";
-import ImageGallery from "./Components/ImageGallery/ImageGallery";
-import api from "./Components/Api/Api";
-import Button from "./Components/Button/Button";
-import Modal from "./Components/Modal/Modal";
+import Searchbar from "./сomponents/Searchbar/Searchbar";
+import ImageGallery from "./сomponents/ImageGallery/ImageGallery";
+import api from "./сomponents/Api/Api";
+import Button from "./сomponents/Button/Button";
+import Modal from "./сomponents/Modal/Modal";
 // import LoaderSpin from './Components/Loader/Loader'
-import { Spinner } from "./Components/Style/styled";
+import { Spinner } from "./сomponents/Style/styled";
 
 export default class App extends Component {
   state = {
@@ -29,7 +29,7 @@ export default class App extends Component {
       this.fetchImg();
     }
   }
-  fetchImg = () => {
+  fetchImg = async () => {
     const { searchQuery, page } = this.state;
     this.setState({ loading: true });
     api
@@ -72,10 +72,10 @@ export default class App extends Component {
   scrolling = () => {
     setTimeout(() => {
       window.scrollBy({
-        top: document.documentElement.clientHeight - 150,
+        top: document.documentElement.scrollHeight,
         behavior: "smooth",
       });
-    }, 1000);
+    }, 500);
   };
 
   handleSubmit = (searchQuery) => {
@@ -92,7 +92,9 @@ export default class App extends Component {
         {images.length > 0 && !error && (
           <>
             <ImageGallery openModal={this.handleImageClick} images={images} />
-            <Button onClick={this.handleLoadMoreBnt} />
+            {images && images.length > 11 && (
+              <Button onClick={this.handleLoadMoreBnt} />
+            )}
           </>
         )}
         {openModal && (
