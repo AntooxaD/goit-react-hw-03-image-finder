@@ -7,8 +7,7 @@ import ImageGallery from "./сomponents/ImageGallery/ImageGallery";
 import api from "./сomponents/Api/Api";
 import Button from "./сomponents/Button/Button";
 import Modal from "./сomponents/Modal/Modal";
-// import LoaderSpin from './Components/Loader/Loader'
-import { Spinner } from "./сomponents/Style/styled";
+import LoaderSpin from "./сomponents/Loader/Loader";
 
 export default class App extends Component {
   state = {
@@ -41,6 +40,7 @@ export default class App extends Component {
             `Не удалось найти картинку по запросу ${searchQuery}`
           );
         }
+
         this.setState(({ images, page }) => ({
           images: [...images, ...hits],
           page: page,
@@ -89,7 +89,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <Searchbar onSubmit={this.handleSubmit} />
-        {loading && <Spinner />}
+        {loading && <LoaderSpin />}
         {images.length > 0 && !error && (
           <>
             <ImageGallery openModal={this.handleImageClick} images={images} />

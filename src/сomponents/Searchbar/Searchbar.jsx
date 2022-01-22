@@ -21,7 +21,7 @@ class Searchbar extends Component {
     e.preventDefault();
     const { searchQuery } = this.state;
     if (searchQuery.trim() === "") {
-      return toast.error("enter a word");
+      return toast.error("Please enter a keyword to search!");
     }
     this.props.onSubmit(searchQuery);
     this.setState({ searchQuery: "" });

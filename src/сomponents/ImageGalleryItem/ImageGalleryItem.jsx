@@ -13,7 +13,7 @@ class ImageGalleryItem extends Component {
     const { loading } = this.state;
     return (
       <GalleryItem>
-        {loading && <LoaderSpin radius={60} />}
+        {loading && <LoaderSpin radius={160} />}
         <GalleryItemImage
           src={webImage}
           data-source={largeImage}

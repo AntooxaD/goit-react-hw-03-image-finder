@@ -1,11 +1,7 @@
-import { BallTriangle } from "react-loader-spinner";
+import { Puff } from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { Spinner } from "../Style/styled";
+import s from "./Loader.module.css";
 
-export default function LoaderSpin({ radius }) {
-  return (
-    <Spinner>
-      <BallTriangle color="#3f51b5" radius={radius} />
-    </Spinner>
-  );
+export default function LoaderSpin() {
+  return <Puff color="#00a3e9" wrapperClass={s.Spinner} />;
 }

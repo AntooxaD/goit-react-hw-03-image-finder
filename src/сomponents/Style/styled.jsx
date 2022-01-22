@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { BallTriangle } from "react-loader-spinner";
 
 const SearchBar = styled.header`
   top: 0;
@@ -88,11 +87,7 @@ const GalleryItemImage = styled.img`
     cursor: zoom-in;
   }
 `;
-const Spinner = styled(BallTriangle)`
-  position: absolute;
-  left: 50;
-  top: 50;
-`;
+
 const Btn = styled.button`
   padding: 8px 16px;
   border-radius: 2px;
@@ -139,7 +134,6 @@ const Modalbox = styled.div`
 `;
 
 export {
-  Spinner,
   SearchBar,
   SearchForm,
   SearchFormButton,
