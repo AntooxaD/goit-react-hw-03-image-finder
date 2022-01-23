@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Component } from "react";
 import Searchbar from "./сomponents/Searchbar/Searchbar";
 import ImageGallery from "./сomponents/ImageGallery/ImageGallery";
-import api from "./сomponents/Api/Api";
+import api from "./service/Api/Api";
 import Button from "./сomponents/Button/Button";
 import Modal from "./сomponents/Modal/Modal";
 import LoaderSpin from "./сomponents/Loader/Loader";
@@ -18,6 +18,7 @@ export default class App extends Component {
     openModal: false,
     selectedImage: null,
     page: 1,
+    fetchLength: "",
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -44,9 +45,10 @@ export default class App extends Component {
         this.setState(({ images, page }) => ({
           images: [...images, ...hits],
           page: page,
+          fetchLength: hits.length,
         }));
       })
-      .catch(() => this.setState({ error: "Побробуйте снова" }))
+      .catch((error) => this.setState({ error: "Побробуйте снова" }))
       .finally(() => {
         this.setState({ loading: false });
         console.log(this.state.images);
@@ -65,7 +67,7 @@ export default class App extends Component {
     this.setState({ openModal: false });
   };
 
-  handleLoadMoreBnt = () => {
+  handleLoadMoreBnt = (hits) => {
     this.setState({ page: this.state.page + 1 });
     this.scrolling();
   };
@@ -84,7 +86,8 @@ export default class App extends Component {
   };
 
   render() {
-    const { images, error, loading, openModal, selectedImage } = this.state;
+    const { images, error, loading, openModal, selectedImage, fetchLength } =
+      this.state;
 
     return (
       <div className="App">
@@ -93,7 +96,8 @@ export default class App extends Component {
         {images.length > 0 && !error && (
           <>
             <ImageGallery openModal={this.handleImageClick} images={images} />
-            {images && images.length > 11 && (
+
+            {images && images.length > 11 && fetchLength === 12 && (
               <Button onClick={this.handleLoadMoreBnt} />
             )}
           </>
@@ -101,6 +105,7 @@ export default class App extends Component {
         {openModal && (
           <Modal onClose={this.closeModal} src={selectedImage}></Modal>
         )}
+
         <ToastContainer
           position="top-right"
           autoClose={3000}
