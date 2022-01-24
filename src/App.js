@@ -21,12 +21,12 @@ export default class App extends Component {
     fetchLength: "",
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps, prevState) {
     if (
       prevState.searchQuery !== this.state.searchQuery ||
       prevState.page !== this.state.page
     ) {
-      this.fetchImg();
+      await this.fetchImg();
     }
   }
   fetchImg = async () => {
